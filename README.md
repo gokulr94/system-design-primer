@@ -428,30 +428,37 @@ Keep in mind that **everything is a trade-off**.
 Then we'll dive into more specific topics such as DNS, CDNs, and load balancers.
 
 ## Performance vs scalability
+**Performance**
+- Definition: Performance is the measure of how quickly a system completes a specific task or handles a certain workload.
+- Goal: Optimize response time and resource utilization for a given workload.
+- Metric Focus: Speed (e.g., response time, processing time, latency).
+- Example: Optimizing a web page to load faster by reducing resource usage or improving code efficiency.
+- Challenges: Limited by current resources, so it requires optimization within the existing system.
 
-A service is **scalable** if it results in increased **performance** in a manner proportional to resources added. Generally, increasing performance means serving more units of work, but it can also be to handle larger units of work, such as when datasets grow.<sup><a href=http://www.allthingsdistributed.com/2006/03/a_word_on_scalability.html>1</a></sup>
-
-Another way to look at performance vs scalability:
-
-* If you have a **performance** problem, your system is slow for a single user.
-* If you have a **scalability** problem, your system is fast for a single user but slow under heavy load.
-
-### Source(s) and further reading
-
-* [A word on scalability](http://www.allthingsdistributed.com/2006/03/a_word_on_scalability.html)
-* [Scalability, availability, stability, patterns](http://www.slideshare.net/jboner/scalability-availability-stability-patterns/)
+**Scalability**
+- Definition: Scalability is the system's ability to grow and handle increased workloads by adding resources (hardware or software).
+- Goal: Maintain performance levels as the workload increases, either by scaling vertically (more power) or horizontally (more instances).
+- Metric Focus: Growth potential, load handling, capacity.
+- Example: Adding more servers to handle growing user traffic on a website without affecting response time.
+- Challenges: Requires careful planning to ensure distributed systems, load balancing, and data management are done efficiently.
 
 ## Latency vs throughput
-
-**Latency** is the time to perform some action or to produce some result.
-
-**Throughput** is the number of such actions or results per unit of time.
+**Latency**
+- Definition: Latency is the time it takes for a system to process a single request from start to finish.
+- Goal: Minimize the delay between the start and completion of an operation.
+- Metric Focus: Time per task (e.g., milliseconds or seconds).
+- Example: The time it takes for a webpage to display after a user clicks a link.
+- Challenges: As load increases, latency can rise unless the system is optimized for low-latency processing.
+  
+**Throughput**
+- Definition: Throughput is the number of tasks or requests a system can handle over a given period of time.
+- Goal: Maximize the number of operations the system can process simultaneously or over a set time.
+- Metric Focus: Tasks per unit of time (e.g., requests per second, transactions per second).
+- Example: The number of HTTP requests a server can handle per second.
+- Challenges: Increasing throughput might cause higher latency if system resources become saturated.
 
 Generally, you should aim for **maximal throughput** with **acceptable latency**.
 
-### Source(s) and further reading
-
-* [Understanding latency vs throughput](https://community.cadence.com/cadence_blogs_8/b/fv/posts/understanding-latency-vs-throughput)
 
 ## Availability vs consistency
 
