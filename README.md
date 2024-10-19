@@ -1,6 +1,4 @@
-*[English](README.md) ∙ [日本語](README-ja.md) ∙ [简体中文](README-zh-Hans.md) ∙ [繁體中文](README-zh-TW.md) | [العَرَبِيَّة‎](https://github.com/donnemartin/system-design-primer/issues/170) ∙ [বাংলা](https://github.com/donnemartin/system-design-primer/issues/220) ∙ [Português do Brasil](https://github.com/donnemartin/system-design-primer/issues/40) ∙ [Deutsch](https://github.com/donnemartin/system-design-primer/issues/186) ∙ [ελληνικά](https://github.com/donnemartin/system-design-primer/issues/130) ∙ [עברית](https://github.com/donnemartin/system-design-primer/issues/272) ∙ [Italiano](https://github.com/donnemartin/system-design-primer/issues/104) ∙ [한국어](https://github.com/donnemartin/system-design-primer/issues/102) ∙ [فارسی](https://github.com/donnemartin/system-design-primer/issues/110) ∙ [Polski](https://github.com/donnemartin/system-design-primer/issues/68) ∙ [русский язык](https://github.com/donnemartin/system-design-primer/issues/87) ∙ [Español](https://github.com/donnemartin/system-design-primer/issues/136) ∙ [ภาษาไทย](https://github.com/donnemartin/system-design-primer/issues/187) ∙ [Türkçe](https://github.com/donnemartin/system-design-primer/issues/39) ∙ [tiếng Việt](https://github.com/donnemartin/system-design-primer/issues/127) ∙ [Français](https://github.com/donnemartin/system-design-primer/issues/250) | [Add Translation](https://github.com/donnemartin/system-design-primer/issues/28)*
-
-**Help [translate](TRANSLATIONS.md) this guide!**
+*[English](README.md) 
 
 # The System Design Primer
 
@@ -8,32 +6,6 @@
   <img src="images/jj3A5N8.png">
   <br/>
 </p>
-
-## Motivation
-
-> Learn how to design large-scale systems.
->
-> Prep for the system design interview.
-
-### Learn how to design large-scale systems
-
-Learning how to design scalable systems will help you become a better engineer.
-
-System design is a broad topic.  There is a **vast amount of resources scattered throughout the web** on system design principles.
-
-This repo is an **organized collection** of resources to help you learn how to build systems at scale.
-
-### Learn from the open source community
-
-This is a continually updated, open source project.
-
-[Contributions](#contributing) are welcome!
-
-### Prep for the system design interview
-
-In addition to coding interviews, system design is a **required component** of the **technical interview process** at many tech companies.
-
-**Practice common system design interview questions** and **compare** your results with **sample solutions**: discussions, code, and diagrams.
 
 Additional topics for interview prep:
 
@@ -332,27 +304,116 @@ New to system design?
 
 First, you'll need a basic understanding of common principles, learning about what they are, how they are used, and their pros and cons.
 
-### Step 1: Review the scalability video lecture
+## Step 1: Review the scalability Concepts
 
-[Scalability Lecture at Harvard](https://www.youtube.com/watch?v=-W9F__D3oY4)
 
-* Topics covered:
-    * Vertical scaling
-    * Horizontal scaling
-    * Caching
-    * Load balancing
-    * Database replication
-    * Database partitioning
+Below is the key scalability concepts that are essential for building highly scalable, reliable, and efficient systems. Below are the topics covered:
 
-### Step 2: Review the scalability article
+### 1. Vertical Scaling (Scaling Up)
+Vertical scaling refers to increasing the capacity of a single server by adding more resources like CPU, RAM, or storage.
 
-[Scalability](https://web.archive.org/web/20221030091841/http://www.lecloud.net/tagged/scalability/chrono)
+- **Example**: Upgrading a server from 16 GB RAM to 64 GB RAM.
+- **Pros**: Simple to implement.
+- **Cons**: Limited by hardware constraints and a single point of failure.
 
-* Topics covered:
-    * [Clones](https://web.archive.org/web/20220530193911/https://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones)
-    * [Databases](https://web.archive.org/web/20220602114024/https://www.lecloud.net/post/7994751381/scalability-for-dummies-part-2-database)
-    * [Caches](https://web.archive.org/web/20230126233752/https://www.lecloud.net/post/9246290032/scalability-for-dummies-part-3-cache)
-    * [Asynchronism](https://web.archive.org/web/20220926171507/https://www.lecloud.net/post/9699762917/scalability-for-dummies-part-4-asynchronism)
+### 2. Horizontal Scaling (Scaling Out)
+Horizontal scaling involves adding more servers or nodes to distribute the load across multiple machines.
+
+- **Example**: Adding more servers to handle web traffic.
+- **Pros**: Better fault tolerance and availability.
+- **Cons**: Complex to manage, requiring load balancing and data synchronization.
+
+### 3. Caching
+Caching stores frequently accessed data in faster storage to reduce load on slower systems like databases.
+
+- **Example**: Using Redis or Memcached for caching session data.
+- **Pros**: Increases performance.
+- **Cons**: Requires cache invalidation strategies for consistency.
+
+### 4. Load Balancing
+Load balancing distributes incoming traffic across multiple servers to ensure that no single server is overwhelmed.
+
+- **Example**: Using Nginx or AWS ELB to distribute traffic.
+- **Pros**: Improves availability and fault tolerance.
+- **Cons**: Load balancer can become a single point of failure.
+
+### 5. Database Replication
+Database replication involves copying data from one database server to others for redundancy and performance improvement.
+
+- **Example**: Master-slave replication for read scaling.
+- **Pros**: Improves read performance.
+- **Cons**: Write operations are still limited to the master, leading to potential consistency issues.
+
+### 6. Database Partitioning (Sharding)
+Database partitioning splits data into smaller, more manageable parts that can be distributed across multiple servers.
+
+- **Example**: Partitioning a user database by geographic region.
+- **Pros**: Improves scalability by distributing data.
+- **Cons**: Increases complexity in query execution and data management.
+
+### 7. Auto-Scaling
+Auto-scaling dynamically adjusts resources based on demand, scaling servers up or down automatically.
+
+- **Example**: AWS Auto Scaling adding or removing EC2 instances.
+- **Pros**: Flexibility and cost-efficiency.
+- **Cons**: Complex configuration and potential for misconfiguration.
+
+### 8. Microservices Architecture
+Microservices break a monolithic application into smaller, independent services that can be scaled separately.
+
+- **Example**: An e-commerce application split into inventory, payments, and user management services.
+- **Pros**: Independent scaling and better fault isolation.
+- **Cons**: Increased complexity in managing services and communication.
+
+### 9. Stateless vs Stateful Architecture
+- **Stateless**: Each request is treated independently.
+  - **Example**: REST APIs.
+  - **Pros**: Easier to scale.
+- **Stateful**: Requires session management across requests.
+  - **Example**: Web applications that maintain user sessions.
+  - **Cons**: More complex to scale.
+
+### 10. Containerization & Orchestration
+Using containers (e.g., Docker) for packaging and running applications in isolated environments. Orchestration tools (e.g., Kubernetes) manage containers at scale.
+
+- **Example**: Running microservices in Docker and using Kubernetes to manage them.
+- **Pros**: Consistency and scalability.
+- **Cons**: Learning curve and added complexity.
+
+### 11. Content Delivery Network (CDN)
+A CDN delivers content from a network of distributed servers based on the user's geographic location.
+
+- **Example**: Cloudflare or AWS CloudFront for caching static content.
+- **Pros**: Reduced latency and improved load times.
+- **Cons**: Limited to static content.
+
+### 12. Asynchronous Processing (Message Queues)
+Using message queues to decouple application components and handle tasks asynchronously.
+
+- **Example**: RabbitMQ or Kafka for background task processing.
+- **Pros**: Improves performance without blocking the main application.
+- **Cons**: Complexity in message delivery and order handling.
+
+### 13. CD/CI Pipelines (Continuous Deployment/Integration)
+Automated pipelines for integrating and deploying code changes continuously.
+
+- **Example**: Jenkins or GitLab CI pipelines for automated deployments.
+- **Pros**: Faster and more reliable updates.
+- **Cons**: Misconfigurations may lead to issues in production.
+
+### 14. Concurrency and Parallelism
+Concurrency allows multiple tasks to progress simultaneously (task-switching), while parallelism uses multiple processors to handle tasks at the same time.
+
+- **Pros**: Increases throughput and performance.
+- **Cons**: Can introduce complexity like race conditions and deadlocks.
+
+### 15. Event-Driven Architecture
+In an event-driven architecture, systems react to events rather than polling or direct invocation.
+
+- **Example**: AWS Lambda for serverless functions triggered by events.
+- **Pros**: Scales well with traffic bursts and reduces costs for sporadic workloads.
+- **Cons**: Requires proper event handling and management.
+
 
 ### Next steps
 
