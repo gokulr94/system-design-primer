@@ -426,41 +426,29 @@ Next, we'll look at high-level trade-offs:
 Keep in mind that **everything is a trade-off**.
 
 Then we'll dive into more specific topics such as DNS, CDNs, and load balancers.
+# Scalability, Performance, Latency, Throughput, Availability, and Consistency
 
-## Performance vs scalability
-**Performance**
-- Definition: Performance is the measure of how quickly a system completes a specific task or handles a certain workload.
-- Goal: Optimize response time and resource utilization for a given workload.
-- Metric Focus: Speed (e.g., response time, processing time, latency).
-- Example: Optimizing a web page to load faster by reducing resource usage or improving code efficiency.
-- Challenges: Limited by current resources, so it requires optimization within the existing system.
+This repository covers key concepts and trade-offs between important system design principles: Performance vs Scalability, Latency vs Throughput, and Availability vs Consistency.
 
-**Scalability**
-- Definition: Scalability is the system's ability to grow and handle increased workloads by adding resources (hardware or software).
-- Goal: Maintain performance levels as the workload increases, either by scaling vertically (more power) or horizontally (more instances).
-- Metric Focus: Growth potential, load handling, capacity.
-- Example: Adding more servers to handle growing user traffic on a website without affecting response time.
-- Challenges: Requires careful planning to ensure distributed systems, load balancing, and data management are done efficiently.
+| **Concepts**            | **Definition**                                                                 | **Goal**                                               | **Metric Focus**                                          | **Example**                                                                                      | **Challenges**                                                       |
+|-------------------------|--------------------------------------------------------------------------------|--------------------------------------------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| **Performance**          | How fast a system handles a task or workload.                                   | Optimize resource usage and response times.             | Speed (response time, processing time, latency).            | Reducing query response time in a database.                                                              | Limited by current hardware/resources.                               |
+| **Scalability**          | Ability to grow and handle increased workload by adding resources.              | Maintain performance as the system grows.               | Capacity, growth potential (e.g., vertical or horizontal).  | Adding more servers to handle additional web traffic.                                                   | Requires careful planning and architecture design for growth.        |
+| **Latency**              | The time it takes for a single task/request to complete.                        | Minimize delay in completing operations.                | Time per task (milliseconds or seconds).                   | Time taken for a webpage to load after clicking a link.                                                 | Increases with load if not properly managed.                         |
+| **Throughput**           | The number of tasks a system can handle over time.                             | Maximize the number of processed tasks.                 | Operations per second, requests per second (RPS).           | The number of HTTP requests a web server can handle per second.                                       | Increasing throughput may increase latency if system resources are overloaded. |
+| **Availability**         | The ability of the system to remain operational and responsive.                 | Ensure continuous service operation.                    | Uptime percentage (e.g., 99.9% uptime).                    | A web service that continues to respond even when a part of the infrastructure is down.              | Requires redundancy, which can add complexity and cost.              |
+| **Consistency**          | Ensuring all clients see the most up-to-date data.                             | Guarantee data accuracy across systems.                 | Data integrity and correctness.                            | A banking system that reflects all transactions immediately across all nodes.                        | Consistency may reduce availability during system or network issues (CAP theorem). |
 
-## Latency vs throughput
-**Latency**
-- Definition: Latency is the time it takes for a system to process a single request from start to finish.
-- Goal: Minimize the delay between the start and completion of an operation.
-- Metric Focus: Time per task (e.g., milliseconds or seconds).
-- Example: The time it takes for a webpage to display after a user clicks a link.
-- Challenges: As load increases, latency can rise unless the system is optimized for low-latency processing.
-  
-**Throughput**
-- Definition: Throughput is the number of tasks or requests a system can handle over a given period of time.
-- Goal: Maximize the number of operations the system can process simultaneously or over a set time.
-- Metric Focus: Tasks per unit of time (e.g., requests per second, transactions per second).
-- Example: The number of HTTP requests a server can handle per second.
-- Challenges: Increasing throughput might cause higher latency if system resources become saturated.
+## Summary
 
-Generally, you should aim for **maximal throughput** with **acceptable latency**.
+- **Performance vs Scalability:**  
+  Performance is about improving speed for current tasks, while scalability is about handling growth without losing performance.
 
+- **Latency vs Throughput:**  
+  Latency measures the time to complete a task, while throughput measures how many tasks can be completed in a given time period.
 
-## Availability vs consistency
+- **Availability vs Consistency:**  
+  Availability focuses on keeping systems responsive, while consistency ensures data correctness, often trading one for the other in distributed systems.
 
 ### CAP theorem
 
